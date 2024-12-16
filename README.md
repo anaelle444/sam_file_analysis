@@ -4,9 +4,9 @@
 
 Project assignment for the SYSTEME class, Master in Bioinformatics of Montpellier, France. 
 
-This bioinformatic project consisted in the processing and analysis of a SAM file. 
+This bioinformatic project's objetcive focus is the processing and analysis of a SAM file. 
 Input = sam file (file.sam)
-Output = 
+Output = text file with the summary of the sam file analysis (results.txt)
 
 ## execution
 
