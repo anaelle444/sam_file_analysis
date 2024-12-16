@@ -12,9 +12,8 @@ import matplotlib.pyplot as plt
 import sys
 
 
-file = "/Users/anaelle/Desktop/HAI724I/mapping.sam" #path to the sam file
-
-#file = sys.argv[1]
+#file = "/Users/anaelle/Desktop/HAI724I/mapping.sam" #path to the sam file
+file = sys.argv[1]
 
 ##parsing the sam file
 
