@@ -61,31 +61,6 @@ def add_binary_to_dict(data):
         data["BINARY_FLAG"].append(binary_flag)
 
 
-##functions to count : 
-
-def count_any1(data, col, threshold): # operator : &
-    '''
-    this function counts the number of reads in the dictionary "data" where the value from the "col" colunm is contained (operator &) in the "threshold" 
-
-    '''
-    count=0
-    for i, value in enumerate(data[col]):  # loop through the column indicated in parameter
-        if value & threshold:                     
-            count += 1
-    # print(count, "reads where", col, "&", threshold )
-    return count
-
-def count_any2(data, col, threshold, op): # any operator
-    '''
-    this function counts the number of reads in the dictionary "data" wwhere the value from the "col" column satisfies the condition defined by the operator "op" and the "threshold".
-    '''
-    count = 0
-    for value in data[col]:  # loop through the column values
-        if op(value, threshold):  # apply the operator dynamically
-            count += 1
-    return count
-
-
 ##functions to filter : 
 
 def filter_sup_anything(data, col, threshold): # filter out < threshold
@@ -262,18 +237,18 @@ def summarise_results(file):
     summary["Count"].append(medium_quality_reads)
     summary["Percentage"].append(calculate_percentage(medium_quality_reads))
 
-    low_quality_reads = count_any2(under_30_mapq, "MAPQ", 10, operator.lt)
+    low_quality_reads = count_any_op(under_30_mapq, "MAPQ", 10, operator.lt)
     summary["Description"].append("Low Quality Reads (MAPQ < 10)")
     summary["Count"].append(low_quality_reads)
     summary["Percentage"].append(calculate_percentage(low_quality_reads))
 
 #alignment 
-    aligned_to_ref = count_any2(sam_data, "REF", "Reference", operator.eq)
+    aligned_to_ref = count_any_op(sam_data, "REF", "Reference", operator.eq)
     summary["Description"].append("Reads aligned to the Reference")
     summary["Count"].append(aligned_to_ref)
     summary["Percentage"].append(calculate_percentage(aligned_to_ref))
 
-    aligned_to_star = count_any2(sam_data, "REF", "*", operator.eq)
+    aligned_to_star = count_any_op(sam_data, "REF", "*", operator.eq)
     summary["Description"].append("Reads aligned to *")
     summary["Count"].append(aligned_to_star)
     summary["Percentage"].append(calculate_percentage(aligned_to_star))
