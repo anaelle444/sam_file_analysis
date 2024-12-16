@@ -20,7 +20,7 @@ fi
 # part 2: if the file passes the control, run the python analysis
 
 if [ "$controle" = true ]; then
-    python3 ./SAM_file_analysis.py "$file"
+    python3 ./SAM_file_analysis.py "$file" > results.txt
 else
     echo "'$file' is not a SAM file or does not exist; we cannot run the analysis"
 fi
